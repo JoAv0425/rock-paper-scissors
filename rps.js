@@ -10,5 +10,12 @@ function getComputerChoice(opponent) {
 }
 console.log(getComputerChoice())
 
+function getHumanChoice(choice) {
+    choice = prompt("Which one's it gonna be?", '')
+    return choice;
+}
+console.log(getHumanChoice())
+
+
 
 
