@@ -69,8 +69,11 @@ let computerScore = 0
    playRound(human,computer);
 
  if (humanScore > computerScore) {
-    console.log("You ARE THE WINNER!");
- } else { console.log("TRY AGAIN NEXT TIME")}
+    console.log("YOU ARE THE WINNER!");
+    alert("YOU ARE THE WINNER!")
+ } else { console.log("TRY AGAIN NEXT TIME");
+    alert("TRY AGAIN NEXT TIME")
+ }
 
 
 
