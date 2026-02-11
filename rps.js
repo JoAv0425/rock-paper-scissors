@@ -1,7 +1,21 @@
 // Game code. Let's go
 
 console.log("Hello World")
-function getComputerChoice() {
+
+ 
+
+
+//Write the logic to play the entire game
+function playGame() {
+    //logic to get human choice
+    function getHumanChoice() {
+    let choice = prompt("Which one's it gonna be?", '')
+    return choice;
+}
+let human = getHumanChoice();
+console.log(human)
+
+    function getComputerChoice() {
     let opponent = (Math.random() * 10)
     if (opponent <= 3.3) {
         return "rock";
@@ -9,23 +23,17 @@ function getComputerChoice() {
             return "paper";
     } else return "scissors";
 }
-const computer = getComputerChoice();
+let computer = getComputerChoice();
 console.log(computer)
 
-//logic to get human choice
-function getHumanChoice() {
-    let choice = prompt("Which one's it gonna be?", '')
-    return choice;
-}
-const human = getHumanChoice();
-console.log(human)
+
 
 //player score variables
 let humanScore = 0
 let computerScore = 0
 
-//logic to play a single round 
-function playRound (humanChoice,computerChoice) {
+ //logic to play a single round   
+    function playRound (humanChoice,computerChoice) {
    humanChoice = humanChoice.toLowerCase();
    if (humanChoice === computerChoice) {
     console.log("It's a tie!");
@@ -37,8 +45,37 @@ function playRound (humanChoice,computerChoice) {
    } else {console.log("You win!");
     ++humanScore
    }
-}
+  } 
+   playRound(human,computer);
+   human = getHumanChoice();
+   console.log(human)
+   computer = getComputerChoice();
+   console.log(computer)
+   playRound(human,computer);
+   human = getHumanChoice();
+   console.log(human)
+   computer = getComputerChoice();
+   console.log(computer)
+   playRound(human,computer);
+   human = getHumanChoice();
+   console.log(human)
+   computer = getComputerChoice();
+   console.log(computer)
+   playRound(human,computer);
+   human = getHumanChoice();
+   console.log(human)
+   computer = getComputerChoice();
+   console.log(computer)
+   playRound(human,computer);
 
-playRound(human,computer);
+ if (humanScore > computerScore) {
+    console.log("You ARE THE WINNER!");
+ } else { console.log("TRY AGAIN NEXT TIME")}
+
+
+
+}
+playGame();
+
 
 
