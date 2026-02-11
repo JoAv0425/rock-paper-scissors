@@ -1,4 +1,5 @@
 // Game code. Let's go
+
 console.log("Hello World")
 function getComputerChoice() {
     let opponent = (Math.random() * 10)
@@ -8,23 +9,36 @@ function getComputerChoice() {
             return "paper";
     } else return "scissors";
 }
-console.log(getComputerChoice())
+const computer = getComputerChoice();
+console.log(computer)
 
+//logic to get human choice
 function getHumanChoice() {
     let choice = prompt("Which one's it gonna be?", '')
     return choice;
 }
-console.log(getHumanChoice())
+const human = getHumanChoice();
+console.log(human)
 
+//player score variables
 let humanScore = 0
 let computerScore = 0
 
+//logic to play a single round 
 function playRound (humanChoice,computerChoice) {
-   humanChoice.toLowerCase();
+   humanChoice = humanChoice.toLowerCase();
    if (humanChoice === computerChoice) {
-    console.lo
+    console.log("It's a tie!");
+   } else if ((humanChoice === "rock" && computerChoice === "paper")
+    || (humanChoice === "paper" && computerChoice === "scissors")
+    || ((humanChoice === "scissors" && computerChoice === "rock"))
+    ) { console.log("You lose!");
+        ++computerScore;
+   } else {console.log("You win!");
+    ++humanScore
    }
 }
 
-const human = getHumanChoice();
-const computer = getComputerChoice();
+playRound(human,computer);
+
+
