@@ -5,15 +5,38 @@ console.log("Hello World")
  
 
 
+
+
+
+
+const div = document.querySelector('div');
+
+
+const rockBtn = document.createElement('button');
+rockBtn.textContent = 'Rock';
+rockBtn.value = 'rock';
+div.appendChild(rockBtn);
+
+const PaperBtn = document.createElement('button');
+PaperBtn.textContent = 'Paper';
+PaperBtn.value = 'paper';
+div.appendChild(PaperBtn);
+
+const ScissorsBtn = document.createElement('button');
+ScissorsBtn.textContent = 'Scissors';
+ScissorsBtn.value = 'scissors';
+div.appendChild(ScissorsBtn);
+
+
+
+
+
 //Write the logic to play the entire game
 function playGame() {
-    //logic to get human choice
-    function getHumanChoice() {
-    let choice = prompt("Which one's it gonna be?", '')
-    return choice;
-}
-let human = getHumanChoice();
-console.log(human)
+    
+    
+    let human;
+    
 
     function getComputerChoice() {
     let opponent = (Math.random() * 10)
@@ -22,20 +45,19 @@ console.log(human)
         } else if (opponent > 3.3 && opponent <= 6.6) {
             return "paper";
     } else return "scissors";
-}
-let computer = getComputerChoice();
-console.log(computer)
+   };
+    let computer;
 
 
 
-//player score variables
-let humanScore = 0
-let computerScore = 0
+    //player score variables
+    let humanScore = 0
+    let computerScore = 0
 
- //logic to play a single round   
+     //logic to play a single round   
     function playRound (humanChoice,computerChoice) {
-   humanChoice = humanChoice.toLowerCase();
-   if (humanChoice === computerChoice) {
+    humanChoice = humanChoice.toLowerCase();
+    if (humanChoice === computerChoice) {
     console.log("It's a tie!");
    } else if ((humanChoice === "rock" && computerChoice === "paper")
     || (humanChoice === "paper" && computerChoice === "scissors")
@@ -43,30 +65,39 @@ let computerScore = 0
     ) { console.log("You lose!");
         ++computerScore;
    } else {console.log("You win!");
-    ++humanScore
+    ++humanScore;
    }
   } 
-   playRound(human,computer);
-   human = getHumanChoice();
-   console.log(human)
-   computer = getComputerChoice();
-   console.log(computer)
-   playRound(human,computer);
-   human = getHumanChoice();
-   console.log(human)
-   computer = getComputerChoice();
-   console.log(computer)
-   playRound(human,computer);
-   human = getHumanChoice();
-   console.log(human)
-   computer = getComputerChoice();
-   console.log(computer)
-   playRound(human,computer);
-   human = getHumanChoice();
-   console.log(human)
-   computer = getComputerChoice();
-   console.log(computer)
-   playRound(human,computer);
+
+
+
+   div.addEventListener('click', (e) => {
+    human = e.target.value;
+    console.log(human);
+    computer = getComputerChoice();
+    console.log(computer);
+    playRound(human,computer);
+
+    let score = new CustomEvent('scoreUpdate', {
+    detail: {
+        humanScore: `${humanScore}`,
+        computerChoice: `${computerScore}`
+    },
+    bubbles: true,
+ });
+    div.dispatchEvent(score);
+ });
+
+ 
+
+ const div2 = document.createElement('div');
+ div2.id = '#scoreboard';
+ div2.addEventListener('scoreUpdate', () => {
+    div2.textContent = `YOU: ${humanScore}      COMPUTER: ${computerScore}`
+ } )
+
+   
+  
 
  if (humanScore > computerScore) {
     console.log("YOU ARE THE WINNER!");
@@ -78,7 +109,12 @@ let computerScore = 0
 
 
 }
-playGame();
+playGame
 
-
-
+ for (let i = 0; i < 5; i++) {
+    human = getHumanChoice();
+    console.log(human);
+    computer = getComputerChoice();
+    console.log(computer);
+    playRound(human,computer);
+   };
