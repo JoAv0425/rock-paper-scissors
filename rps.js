@@ -109,14 +109,19 @@ function playGame() {
 
  } );
 
-
- 
-
-
-   
-  
-
-
+ const body = document.querySelector('body');
+ const buttons = document.querySelectorAll('button');
+ body.addEventListener('scoreUpdate', () => {
+    if (humanScore === 5 && computerScore !== 5 ) {
+    alert('Congratulations!!!');
+    buttons.forEach(btn => btn.disabled = true);
+    return;
+ } else if (humanScore != 5 && computerScore == 5){
+    alert("Better Luck Next Time");
+    buttons.forEach(btn => btn.disabled = true);
+    return;
+ };
+ })
 
 }
 playGame();
