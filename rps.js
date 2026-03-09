@@ -69,6 +69,7 @@ function playGame() {
    }
   } 
 
+ 
 
 
    div.addEventListener('click', (e) => {
@@ -84,37 +85,26 @@ function playGame() {
         computerChoice: `${computerScore}`
     },
     bubbles: true,
- });
-    div.dispatchEvent(score);
+    });
+
+    div2.dispatchEvent(score);
  });
 
  
 
  const div2 = document.createElement('div');
- div2.id = '#scoreboard';
+ div2.id = 'scoreboard';
  div2.addEventListener('scoreUpdate', () => {
     div2.textContent = `YOU: ${humanScore}      COMPUTER: ${computerScore}`
- } )
+ } );
+
+ div.appendChild(div2);
 
    
   
 
- if (humanScore > computerScore) {
-    console.log("YOU ARE THE WINNER!");
-    alert("YOU ARE THE WINNER!")
- } else { console.log("TRY AGAIN NEXT TIME");
-    alert("TRY AGAIN NEXT TIME")
- }
-
 
 
 }
-playGame
+playGame();
 
- for (let i = 0; i < 5; i++) {
-    human = getHumanChoice();
-    console.log(human);
-    computer = getComputerChoice();
-    console.log(computer);
-    playRound(human,computer);
-   };
