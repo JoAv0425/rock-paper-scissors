@@ -51,20 +51,25 @@ function playGame() {
 
 
     //player score variables
-    let humanScore = 0
-    let computerScore = 0
+    let humanScore = 0;
+    let computerScore = 0;
+    let verdict = '';
+    
 
      //logic to play a single round   
     function playRound (humanChoice,computerChoice) {
     humanChoice = humanChoice.toLowerCase();
     if (humanChoice === computerChoice) {
     console.log("It's a tie!");
+    verdict = "it's a tie";
    } else if ((humanChoice === "rock" && computerChoice === "paper")
     || (humanChoice === "paper" && computerChoice === "scissors")
     || ((humanChoice === "scissors" && computerChoice === "rock"))
     ) { console.log("You lose!");
+        verdict = "You lose!";
         ++computerScore;
    } else {console.log("You win!");
+    verdict = "You win!";
     ++humanScore;
    }
   } 
@@ -87,18 +92,26 @@ function playGame() {
     bubbles: true,
     });
 
-    div2.dispatchEvent(score);
+    div.dispatchEvent(score);
  });
 
  
 
  const div2 = document.createElement('div');
  div2.id = 'scoreboard';
- div2.addEventListener('scoreUpdate', () => {
-    div2.textContent = `YOU: ${humanScore}      COMPUTER: ${computerScore}`
+ div.appendChild(div2);
+ const div3 = document.createElement('div');
+ div.appendChild(div3)
+
+ div.addEventListener('scoreUpdate', () => {
+    div2.textContent = `YOU: ${humanScore}      COMPUTER: ${computerScore}`;
+    div3.textContent = verdict;
+
  } );
 
- div.appendChild(div2);
+
+ 
+
 
    
   
